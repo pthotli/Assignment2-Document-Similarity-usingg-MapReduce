@@ -85,7 +85,9 @@ Doc3:big data is important for analysis
 Output:
 
 Document 3, Document2  similarity: 0.40
+
 Document 3, Document1  similarity: 0.39
+
 Document 2, Document1  similarity: 0.29
 
 
