@@ -1,22 +1,22 @@
-# Assignment 2: Document Similarity using MapReduce
+Assignment 2: Document Similarity using MapReduce
 
 Name: Pranathi Thotli
 
 Student ID: 801425061 
 
-## Approach and Implementation
+Approach and Implementation
 
-### Mapper Design
+Mapper Design
 The Mapper reads each line of the input file where the first token is the document ID and the remaining tokens are words. Input key-value pair is LongWritable, Text byte offset and the line. For each word in the line, it emits word, documentID as the output key-value pair. This helps by allowing the shuffle phase to group all document IDs that contain the same word, enabling the Reducer to find shared words between documents.
 
-### Reducer Design
+Reducer Design
 The Reducer receives word, docID1, docID2, and so on, a word and all documents containing it. It collects the document IDs into a list and generates all possible pairs (e.g., Doc1-Doc2). For each pair, it tracks shared word count intersection and total unique words (union). Jaccard Similarity is calculated as |A ∩ B| / |A ∪ B| and emits DocA-DocB, Similarity: X.XX as the final output.
 
-### Overall Data Flow
+Overall Flow
 Input files (doc1.txt, doc2.txt, doc3.txt) are stored in HDFS. The Mapper processes each file, tokenizes each line, and emits (word → docID) pairs. The shuffle/sort phase groups all document IDs by word. The Reducer then generates document pairs, computes Jaccard similarity using shared and unique word counts, and writes the final similarity scores to /output/part-r-00000 in HDFS.
----
 
-## Setup and Execution
+
+Setup and Execution
 
 Environment Setup: Running Hadoop in Docker
 Since we are using Docker Compose to run a Hadoop cluster, follow these steps to set up your environment.
@@ -64,7 +64,7 @@ If you want to download the output to your local machine:
 hdfs dfs -get /output_final /path/to/local/output
 
 
-## Challenges and Solutions
+Challenges and Solutions
 Maven Version Incompatibility
 Maven 4.x requires Java 17 but the environment runs Java 11. Resolved by manually downloading and installing Apache Maven 3.9.6 which is compatible with Java 11.
 
@@ -83,5 +83,11 @@ Doc3:
 big data is important for analysis
 
 Output:
+Document 3, Document2  similarity: 0.40
+Document 3, Document1  similarity: 0.39
+Document 2, Document1  similarity: 0.29
+
+
+
 
 
