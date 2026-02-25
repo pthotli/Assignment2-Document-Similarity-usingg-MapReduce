@@ -75,20 +75,17 @@ Empty JAR Produced by Maven
 Maven built the JAR but warned JAR will be empty - no content was marked for inclusion. Resolved by moving the source files from src/main/com/ to the correct Maven directory structure src/main/java/com/
 
 Input:
-Doc1:
-hadoop is a distributed system
 
-Doc2:
-hadoop is used for big data processing
+Doc1:hadoop is a distributed system
 
-Doc3:
-big data is important for analysis
+Doc2:hadoop is used for big data processing
+
+Doc3:big data is important for analysis
 
 Output:
+
 Document 3, Document2  similarity: 0.40
-
 Document 3, Document1  similarity: 0.39
-
 Document 2, Document1  similarity: 0.29
 
 
